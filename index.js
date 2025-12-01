@@ -41,34 +41,62 @@
 // main();
 
 // Soal 2
-// Transformasi Array
+// // Transformasi Array
+// function main(){
+//     let nilaiSiswa = [70, 75, 80, 65, 90];
+//     let nilaiDenganBonus = prosesNilai(nilaiSiswa, tambahBonus);
+//     console.log(nilaiDenganBonus);
+
+//     // Untuk fungsi kalikanDua
+//     let nilaiKaliDua = prosesNilai(nilaiSiswa, kalikanDua);
+//     console.log(nilaiKaliDua);
+// };
+
+// // Fungsi untuk Memproses Nilai
+// const prosesNilai = (nilaiSiswa, fungsiTransformasi) => {
+//     let hasilBaru = [];
+//     nilaiSiswa.forEach(nilai => {
+//         let nilaiTerubah = fungsiTransformasi(nilai);
+//         hasilBaru.push(nilaiTerubah)
+//     });
+//     return hasilBaru
+// };
+
+// const tambahBonus = (nilai) => {
+//     return nilai + 10;
+// };
+
+// // Fungsi untuk mengalikan nilai dengan 2
+// const kalikanDua = (nilai) => {
+//     return nilai * 2;
+// }
+
+// main();
+
+// Soal 3
+// Operasi Dasar Matematika
 function main(){
-    let nilaiSiswa = [70, 75, 80, 65, 90];
-    let nilaiDenganBonus = prosesNilai(nilaiSiswa, tambahBonus);
-    console.log(nilaiDenganBonus);
+    let x = 5;
+    let y = 5;
 
-    // Untuk fungsi kalikanDua
-    let nilaiKaliDua = prosesNilai(nilaiSiswa, kalikanDua);
-    console.log(nilaiKaliDua);
+    let hasilTambah = lakukan(x, y, tambah);
+    console.log("Hasil penjumlahan: " + hasilTambah);
+
+    let hasilKali = lakukan(x, y, kali);
+    console.log("Hasil perkalian: " + hasilKali);
 };
 
-// Fungsi untuk Memproses Nilai
-const prosesNilai = (nilaiSiswa, fungsiTransformasi) => {
-    let hasilBaru = [];
-    nilaiSiswa.forEach(nilai => {
-        let nilaiTerubah = fungsiTransformasi(nilai);
-        hasilBaru.push(nilaiTerubah)
-    });
-    return hasilBaru
+const lakukan = (x, y, operasi) => {
+    let hasil = operasi(x, y);
+    return hasil;
 };
 
-const tambahBonus = (nilai) => {
-    return nilai + 10;
+const tambah = (x, y) => {
+    return x + y;
 };
 
-// Fungsi untuk mengalikan nilai dengan 2
-const kalikanDua = (nilai) => {
-    return nilai * 2;
-}
+const kali = (x, y) => {
+    return x * y;
+};
 
 main();
