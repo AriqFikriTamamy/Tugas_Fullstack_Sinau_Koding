@@ -103,37 +103,89 @@
 // main();
 
 // Soal 4
-// Memfilter Nilai Kelulusan
+// // Memfilter Nilai Kelulusan
+// function main(){
+//     let semuaNilai = [55, 70, 45, 80, 65, 50, 90];
+//     semuaNilai.sort(); //Method Sort untuk mengurutkan nilai dari Array secara Ascending (inisiatif pribadi, tidak ada di soal)
+//     let nilaiLulus = filterArray(semuaNilai, cekLulus);
+//     console.log("Nilai yang lulus: " + hasil.lulus);
+//     console.log("Nilai yang tidak lulus: " + hasil.tidakLulus);
+// };
+
+// const cekLulus = (nilai) => {
+//     if(nilai >= 60){
+//         return true
+//     }else {
+//         return false
+//     };
+// };
+
+// const filterArray = (semuaNilai, cekLulus) => {
+//     let arrayLulus = [];
+//     let arrayTidakLulus = [];
+//     semuaNilai.forEach(nilai => {
+//         if(cekLulus(nilai) == true){
+//             arrayLulus.push(nilai);
+//         }else {
+//             arrayTidakLulus.push(nilai);
+//         }
+//     })
+//     return {
+//         lulus: arrayLulus,
+//         tidakLulus: arrayTidakLulus
+//     }
+// };
+
+// main();
+
+// Bagian 2
+// Soal 5
+// Menentukan Pedikat Nilai
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
 function main(){
-    let semuaNilai = [55, 70, 45, 80, 65, 50, 90];
-    semuaNilai.sort(); //Method Sort untuk mengurutkan nilai dari Array secara Ascending (inisiatif pribadi, tidak ada di soal)
-    let nilaiLulus = filterArray(semuaNilai, cekLulus);
-    console.log("Nilai yang lulus: " + hasil.lulus);
-    console.log("Nilai yang tidak lulus: " + hasil.tidakLulus);
-};
-
-const cekLulus = (nilai) => {
-    if(nilai >= 60){
-        return true
-    }else {
-        return false
-    };
-};
-
-const filterArray = (semuaNilai, cekLulus) => {
-    let arrayLulus = [];
-    let arrayTidakLulus = [];
-    semuaNilai.forEach(nilai => {
-        if(cekLulus(nilai) == true){
-            arrayLulus.push(nilai);
+    readline.question("Masukkan nilai: ", function(nilai){
+        // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
+        if(isNaN(nilai)){
+            console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
+            readline.close();
+        }else if(nilai >= 101 || nilai <= 0){
+            // let nilaiMahasiswaTidakValid = parseFloat(nilai);
+            // let gradeTidakValid = tentukanGrade(parseFloat(nilaiMahasiswaTidakValid))
+            console.log("Nilai tidak valid");
+            readline.close()
         }else {
-            arrayTidakLulus.push(nilai);
+            let nilaiMahasiswa = parseFloat(nilai);
+            let grade = tentukanGrade(parseFloat(nilaiMahasiswa));
+            console.log("Grade Anda: " + grade);
+            readline.close();
+            if(grade == "A" ){
+                console.log("Luar Biasa!");
+            }else if(grade == "B"){
+                console.log("Bagus!");
+            }else{
+                console.log("Perlu Belajar Lebih Giat!");
+            }
         }
     })
-    return {
-        lulus: arrayLulus,
-        tidakLulus: arrayTidakLulus
+};
+
+const tentukanGrade = (nilai) => {
+    if(nilai >= 90 && nilai <= 100){ //Saya asumsikan nilai tertinggi adalah 100, karena tidak ada dalam soal
+        return "A";
+    }else if(nilai >= 80 && nilai <= 89){
+        return "B";
+    }else if(nilai >= 70 && nilai <= 79){
+        return "C";
+    }else if(nilai >= 60 && nilai <= 69){
+        return "D";
+    }else{
+        return "E"
     }
 };
 
 main();
+
