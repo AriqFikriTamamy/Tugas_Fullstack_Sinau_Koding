@@ -190,50 +190,82 @@
 // main();
 
 // Soal 6
-// Pemilihan Menu Makanan
+// // Pemilihan Menu Makanan
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// function main(){
+//     readline.question("Pilih menu (nasi goreng/mie ayam/bakso/soto/nasi uduk/nasi kuning/bubur ayam/nasi padang): ", function(pilihan){
+//         let pilihanMenu = pilihan;
+//         tampilkanHarga(pilihanMenu);
+//         readline.close();
+//     })
+// };
+
+// const tampilkanHarga = (pilihan) => {
+//     switch (pilihan) {
+//         case "nasi goreng":
+//             console.log("Harga: Rp. 15.000");
+//             break;
+//         case "mie ayam":
+//             console.log("Harga: Rp. 12.000");
+//             break;
+//         case "bakso":
+//             console.log("Harga: Rp. 10.000");
+//             break;
+//         case "soto":
+//             console.log("Harga: Rp. 13.000");
+//             break;
+//         case "nasi uduk":
+//             console.log("Harga: Rp. 7.000");
+//             break;
+//         case "nasi kuning":
+//             console.log("Harga: Rp. 7.000");
+//             break;
+//         case "bubur ayam":
+//             console.log("Harga: Rp. 6.000");
+//             break;
+//         case "nasi padang":
+//             console.log("Menu Spesial");
+//             break;
+//         default:
+//             console.log("Menu tidak tersedia");
+//             break;
+//     }
+// }
+
+// main();
+
+// Soal 7
+// Status Kelulusan
 const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
 function main(){
-    readline.question("Pilih menu (nasi goreng/mie ayam/bakso/soto/nasi uduk/nasi kuning/bubur ayam/nasi padang): ", function(pilihan){
-        let pilihanMenu = pilihan;
-        tampilkanHarga(pilihanMenu);
-        readline.close();
+    readline.question("Masukkan nilai ujian: ", function(nilai){
+         // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
+        if(isNaN(nilai)){
+            console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
+            readline.close();
+        }else if( nilai >= 101 || nilai <= 0){
+            console.log("Nilai tidak valid");
+            readline.close()
+        }else {
+            let nilaiUjian = parseFloat(nilai);
+            let hasil = cekStatus(nilaiUjian);
+            console.log("Status: " + hasil);
+            readline.close();
+        }
     })
 };
 
-const tampilkanHarga = (pilihan) => {
-    switch (pilihan) {
-        case "nasi goreng":
-            console.log("Harga: Rp. 15.000");
-            break;
-        case "mie ayam":
-            console.log("Harga: Rp. 12.000");
-            break;
-        case "bakso":
-            console.log("Harga: Rp. 10.000");
-            break;
-        case "soto":
-            console.log("Harga: Rp. 13.000");
-            break;
-        case "nasi uduk":
-            console.log("Harga: Rp. 7.000");
-            break;
-        case "nasi kuning":
-            console.log("Harga: Rp. 7.000");
-            break;
-        case "bubur ayam":
-            console.log("Harga: Rp. 6.000");
-            break;
-        case "nasi padang":
-            console.log("Menu Spesial");
-            break;
-        default:
-            console.log("Menu tidak tersedia");
-            break;
-    }
-}
+const cekStatus = (nilai) => {
+    let status = nilai >= 80 ? "LULUS DENGAN PUJIAN" : (nilai >= 60 ? "LULUS" : "TIDAK LULUS");
+    return status;
+};
 
 main();
