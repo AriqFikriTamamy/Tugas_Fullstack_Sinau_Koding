@@ -140,52 +140,100 @@
 
 // Bagian 2
 // Soal 5
-// Menentukan Pedikat Nilai
-const readline = require('readline').createInterface({
+// // Menentukan Pedikat Nilai
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// })
+
+// function main(){
+//     readline.question("Masukkan nilai: ", function(nilai){
+//         // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
+//         if(isNaN(nilai)){
+//             console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
+//             readline.close();
+//         }else if(nilai >= 101 || nilai <= 0){
+//             // let nilaiMahasiswaTidakValid = parseFloat(nilai);
+//             // let gradeTidakValid = tentukanGrade(parseFloat(nilaiMahasiswaTidakValid))
+//             console.log("Nilai tidak valid");
+//             readline.close()
+//         }else {
+//             let nilaiMahasiswa = parseFloat(nilai);
+//             let grade = tentukanGrade(parseFloat(nilaiMahasiswa));
+//             console.log("Grade Anda: " + grade);
+//             readline.close();
+//             if(grade == "A" ){
+//                 console.log("Luar Biasa!");
+//             }else if(grade == "B"){
+//                 console.log("Bagus!");
+//             }else{
+//                 console.log("Perlu Belajar Lebih Giat!");
+//             }
+//         }
+//     })
+// };
+
+// const tentukanGrade = (nilai) => {
+//     if(nilai >= 90 && nilai <= 100){ //Saya asumsikan nilai tertinggi adalah 100, karena tidak ada dalam soal
+//         return "A";
+//     }else if(nilai >= 80 && nilai <= 89){
+//         return "B";
+//     }else if(nilai >= 70 && nilai <= 79){
+//         return "C";
+//     }else if(nilai >= 60 && nilai <= 69){
+//         return "D";
+//     }else{
+//         return "E"
+//     }
+// };
+
+// main();
+
+// Soal 6
+// Pemilihan Menu Makanan
+const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
-})
+});
 
 function main(){
-    readline.question("Masukkan nilai: ", function(nilai){
-        // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
-        if(isNaN(nilai)){
-            console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
-            readline.close();
-        }else if(nilai >= 101 || nilai <= 0){
-            // let nilaiMahasiswaTidakValid = parseFloat(nilai);
-            // let gradeTidakValid = tentukanGrade(parseFloat(nilaiMahasiswaTidakValid))
-            console.log("Nilai tidak valid");
-            readline.close()
-        }else {
-            let nilaiMahasiswa = parseFloat(nilai);
-            let grade = tentukanGrade(parseFloat(nilaiMahasiswa));
-            console.log("Grade Anda: " + grade);
-            readline.close();
-            if(grade == "A" ){
-                console.log("Luar Biasa!");
-            }else if(grade == "B"){
-                console.log("Bagus!");
-            }else{
-                console.log("Perlu Belajar Lebih Giat!");
-            }
-        }
+    readline.question("Pilih menu (nasi goreng/mie ayam/bakso/soto/nasi uduk/nasi kuning/bubur ayam/nasi padang): ", function(pilihan){
+        let pilihanMenu = pilihan;
+        tampilkanHarga(pilihanMenu);
+        readline.close();
     })
 };
 
-const tentukanGrade = (nilai) => {
-    if(nilai >= 90 && nilai <= 100){ //Saya asumsikan nilai tertinggi adalah 100, karena tidak ada dalam soal
-        return "A";
-    }else if(nilai >= 80 && nilai <= 89){
-        return "B";
-    }else if(nilai >= 70 && nilai <= 79){
-        return "C";
-    }else if(nilai >= 60 && nilai <= 69){
-        return "D";
-    }else{
-        return "E"
+const tampilkanHarga = (pilihan) => {
+    switch (pilihan) {
+        case "nasi goreng":
+            console.log("Harga: Rp. 15.000");
+            break;
+        case "mie ayam":
+            console.log("Harga: Rp. 12.000");
+            break;
+        case "bakso":
+            console.log("Harga: Rp. 10.000");
+            break;
+        case "soto":
+            console.log("Harga: Rp. 13.000");
+            break;
+        case "nasi uduk":
+            console.log("Harga: Rp. 7.000");
+            break;
+        case "nasi kuning":
+            console.log("Harga: Rp. 7.000");
+            break;
+        case "bubur ayam":
+            console.log("Harga: Rp. 6.000");
+            break;
+        case "nasi padang":
+            console.log("Menu Spesial");
+            break;
+        default:
+            console.log("Menu tidak tersedia");
+            break;
     }
-};
+}
 
 main();
-
