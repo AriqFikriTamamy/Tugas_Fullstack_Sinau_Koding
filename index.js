@@ -31,10 +31,10 @@ const hitungLuas = (panjang, lebar) => {
     return hasil;
 };
 
-main();
-
 //Menghitung Keliling Persegi Panjang
 const hitungKeliling = (panjang, lebar) => {
     let hasil = 2 * (panjang + lebar);
     return hasil;
 }
+
+main();
