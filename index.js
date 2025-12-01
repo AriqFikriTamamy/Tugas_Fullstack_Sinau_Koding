@@ -239,33 +239,67 @@
 // main();
 
 // Soal 7
-// Status Kelulusan
+// // Status Kelulusan
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// function main(){
+//     readline.question("Masukkan nilai ujian: ", function(nilai){
+//          // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
+//         if(isNaN(nilai)){
+//             console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
+//             readline.close();
+//         }else if( nilai >= 101 || nilai <= 0){
+//             console.log("Nilai tidak valid");
+//             readline.close()
+//         }else {
+//             let nilaiUjian = parseFloat(nilai);
+//             let hasil = cekStatus(nilaiUjian);
+//             console.log("Status: " + hasil);
+//             readline.close();
+//         }
+//     })
+// };
+
+// const cekStatus = (nilai) => {
+//     let status = nilai >= 80 ? "LULUS DENGAN PUJIAN" : (nilai >= 60 ? "LULUS" : "TIDAK LULUS");
+//     return status;
+// };
+
+// main();
+
+// Soal 8
+// Kategori Usia
 const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
 function main(){
-    readline.question("Masukkan nilai ujian: ", function(nilai){
-         // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
-        if(isNaN(nilai)){
-            console.log("Input yang diberikan tidak valid. Silahkan masukkan input yang benar.");
-            readline.close();
-        }else if( nilai >= 101 || nilai <= 0){
-            console.log("Nilai tidak valid");
-            readline.close()
-        }else {
-            let nilaiUjian = parseFloat(nilai);
-            let hasil = cekStatus(nilaiUjian);
-            console.log("Status: " + hasil);
-            readline.close();
-        }
-    })
+    readline.question("Masukkan usia: ", function(umur){
+        let usia = umur;
+        let kategori = tentukanKategori(usia);
+        console.log("Kategori: " + kategori);
+        readline.close();
+    });
 };
 
-const cekStatus = (nilai) => {
-    let status = nilai >= 80 ? "LULUS DENGAN PUJIAN" : (nilai >= 60 ? "LULUS" : "TIDAK LULUS");
-    return status;
+const tentukanKategori = (umur) => {
+    if( umur <= 0 ){
+        return "Usia tidak valid";
+    }else if( umur <= 12 ){
+        return "Anak-Anak";
+    }else if( umur <= 17 ){
+        return "Remaja";
+    }else if( umur <= 60){
+        return "Dewasa";
+    }else if( umur <= 99){
+        return "Lansia"
+    }else{
+        return "Usia sangat lanjut";
+    }
 };
 
 main();
