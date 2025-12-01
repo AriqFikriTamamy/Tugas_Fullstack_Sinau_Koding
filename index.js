@@ -1,3 +1,4 @@
+// Bagian 1
 // Soal 1
 // // Fungsi Dasar Javscript
 // // Menghitung Luas Persegi Panjang
