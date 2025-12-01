@@ -76,28 +76,64 @@
 
 // Soal 3
 // Operasi Dasar Matematika
+// function main(){
+//     let x = 5;
+//     let y = 5;
+
+//     let hasilTambah = lakukan(x, y, tambah);
+//     console.log("Hasil penjumlahan: " + hasilTambah);
+
+//     let hasilKali = lakukan(x, y, kali);
+//     console.log("Hasil perkalian: " + hasilKali);
+// };
+
+// const lakukan = (x, y, operasi) => {
+//     let hasil = operasi(x, y);
+//     return hasil;
+// };
+
+// const tambah = (x, y) => {
+//     return x + y;
+// };
+
+// const kali = (x, y) => {
+//     return x * y;
+// };
+
+// main();
+
+// Soal 4
+// Memfilter Nilai Kelulusan
 function main(){
-    let x = 5;
-    let y = 5;
-
-    let hasilTambah = lakukan(x, y, tambah);
-    console.log("Hasil penjumlahan: " + hasilTambah);
-
-    let hasilKali = lakukan(x, y, kali);
-    console.log("Hasil perkalian: " + hasilKali);
+    let semuaNilai = [55, 70, 45, 80, 65, 50, 90];
+    semuaNilai.sort(); //Method Sort untuk mengurutkan nilai dari Array secara Ascending (inisiatif pribadi, tidak ada di soal)
+    let nilaiLulus = filterArray(semuaNilai, cekLulus);
+    console.log("Nilai yang lulus: " + hasil.lulus);
+    console.log("Nilai yang tidak lulus: " + hasil.tidakLulus);
 };
 
-const lakukan = (x, y, operasi) => {
-    let hasil = operasi(x, y);
-    return hasil;
+const cekLulus = (nilai) => {
+    if(nilai >= 60){
+        return true
+    }else {
+        return false
+    };
 };
 
-const tambah = (x, y) => {
-    return x + y;
-};
-
-const kali = (x, y) => {
-    return x * y;
+const filterArray = (semuaNilai, cekLulus) => {
+    let arrayLulus = [];
+    let arrayTidakLulus = [];
+    semuaNilai.forEach(nilai => {
+        if(cekLulus(nilai) == true){
+            arrayLulus.push(nilai);
+        }else {
+            arrayTidakLulus.push(nilai);
+        }
+    })
+    return {
+        lulus: arrayLulus,
+        tidakLulus: arrayTidakLulus
+    }
 };
 
 main();
