@@ -271,35 +271,86 @@
 // main();
 
 // Soal 8
-// Kategori Usia
+// // Kategori Usia
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// function main(){
+//     readline.question("Masukkan usia: ", function(umur){
+//         let usia = umur;
+//         let kategori = tentukanKategori(usia);
+//         console.log("Kategori: " + kategori);
+//         readline.close();
+//     });
+// };
+
+// const tentukanKategori = (umur) => {
+//     if( umur <= 0 ){
+//         return "Usia tidak valid";
+//     }else if( umur <= 12 ){
+//         return "Anak-Anak";
+//     }else if( umur <= 17 ){
+//         return "Remaja";
+//     }else if( umur <= 60){
+//         return "Dewasa";
+//     }else if( umur <= 99){
+//         return "Lansia"
+//     }else{
+//         return "Usia sangat lanjut";
+//     }
+// };
+
+// main();
+
+// Bagian 3
+// Soal 9
+// Menampilkan Bilangan Genap
 const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
 function main(){
-    readline.question("Masukkan usia: ", function(umur){
-        let usia = umur;
-        let kategori = tentukanKategori(usia);
-        console.log("Kategori: " + kategori);
-        readline.close();
+    readline.question("Masukkan batas atas: ", function(batas){
+        let batasAtas = parseInt(batas);
+
+        // Validasi apakah input yang diberikan valid menggunakan pengkondisian (tambahan pribadi, tidak ada dalam soal)
+        if(isNaN(batasAtas) || batasAtas <= 0){
+            console.log("Nilai tidak valid. Angka harus lebih dari 0");
+            readline.close()
+        }else{
+            tampilkanGenap(batasAtas);
+            tampilkanGanjil(batasAtas);
+            readline.close()
+        }
     });
 };
 
-const tentukanKategori = (umur) => {
-    if( umur <= 0 ){
-        return "Usia tidak valid";
-    }else if( umur <= 12 ){
-        return "Anak-Anak";
-    }else if( umur <= 17 ){
-        return "Remaja";
-    }else if( umur <= 60){
-        return "Dewasa";
-    }else if( umur <= 99){
-        return "Lansia"
-    }else{
-        return "Usia sangat lanjut";
-    }
+const tampilkanGenap = (batas) => {
+    let hasil = [];
+
+    for(let i = 1; i <= batas; i++){
+        if( i % 2 === 0){
+        //    console.log(i);
+        hasil.push(i);
+        };
+    };
+
+    console.log("Bilangan genap dari 1 sampai " + batas + ": " + hasil.join(" "));
 };
+
+const tampilkanGanjil = (batas) => {
+    let hasil = [];
+    for(let i = 1; i <= batas; i++){
+        if(i % 2 === 1){
+            hasil.push(i)
+        };
+    };
+
+    console.log("Bilangan ganjil dari 1 sampai " + batas + ": " + hasil.join(" "));
+    console.log("Jumlah bilangan ganjil: " + hasil.length)
+}
 
 main();
