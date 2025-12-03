@@ -356,36 +356,73 @@
 // main();
 
 // Soal 10
-// Program Hitung Mundur
-const readline = require("readline").createInterface({
+// // Program Hitung Mundur
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// function main(){
+//     readline.question("Mulai hitung mundur dari: ", function(mulaiDari){
+//         let angkaAwal = parseFloat(mulaiDari);
+//         mundur(angkaAwal);
+//         readline.close()
+//     });
+// };
+
+// const pause = (ms) => {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// async function mundur(mulaiDari) {
+//     let counter = mulaiDari;
+//     while( counter > 0){
+//         await pause(1000);
+//         console.log(counter);
+//         if( counter == 5 ){
+//             console.log("Berhenti di angka 5!");
+//             break;
+//         };
+//         counter = counter - 1;
+//     };
+//     console.log("Selesai!");
+// }
+
+// main();
+
+// Soal 11
+// Validasi Password
+const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+const prompt = require("prompt-sync")({
+    sigint: true
+})
+
 function main(){
-    readline.question("Mulai hitung mundur dari: ", function(mulaiDari){
-        let angkaAwal = parseFloat(mulaiDari);
-        mundur(angkaAwal);
-        readline.close()
-    });
+    mintaPassword();
 };
 
-const pause = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+const mintaPassword = () => {
+    const passwordBenar = "rahasia123";
+    let inputUser;
+    let percobaan = 0;
+    do{
+        inputUser = prompt("Masukkan password: ");
+        percobaan++;
+        if(inputUser != passwordBenar){
+                console.log("Password salah. Coba lagi.");
+            };
+        if(percobaan === 3 && inputUser !== passwordBenar){
+                console.log("Akun diblokir!");
+                process.exit();
+            };
+        }while(inputUser !== passwordBenar);
 
-async function mundur(mulaiDari) {
-    let counter = mulaiDari;
-    while( counter > 0){
-        await pause(1000);
-        console.log(counter);
-        if( counter == 5 ){
-            console.log("Berhenti di angka 5!");
-            break;
-        };
-        counter = counter - 1;
-    };
-    console.log("Selesai!");
-}
+        console.log("Password benar! Akses diberikan.");
+        readline.close();
+};
 
 main();
