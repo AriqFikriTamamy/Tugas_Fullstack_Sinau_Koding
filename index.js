@@ -391,38 +391,68 @@
 // main();
 
 // Soal 11
-// Validasi Password
-const readline = require('readline').createInterface({
+// // Validasi Password
+// const readline = require('readline').createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+// const prompt = require("prompt-sync")({
+//     sigint: true
+// })
+
+// function main(){
+//     mintaPassword();
+// };
+
+// const mintaPassword = () => {
+//     const passwordBenar = "rahasia123";
+//     let inputUser;
+//     let percobaan = 0;
+//     do{
+//         inputUser = prompt("Masukkan password: ");
+//         percobaan++;
+//         if(inputUser != passwordBenar){
+//                 console.log("Password salah. Coba lagi.");
+//             };
+//         if(percobaan === 3 && inputUser !== passwordBenar){
+//                 console.log("Akun diblokir!");
+//                 process.exit();
+//             };
+//         }while(inputUser !== passwordBenar);
+
+//         console.log("Password benar! Akses diberikan.");
+//         readline.close();
+// };
+
+// main();
+
+// Soal 12
+// Pola Bintang
+const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-const prompt = require("prompt-sync")({
-    sigint: true
-})
-
 function main(){
-    mintaPassword();
+    readline.question("Masukkan tinggi segitiga: ", function(tinggiSegitiga){
+        tinggiSegitiga = parseInt(tinggiSegitiga);
+        buatSegitiga(tinggiSegitiga);
+        readline.close();
+    })
 };
 
-const mintaPassword = () => {
-    const passwordBenar = "rahasia123";
-    let inputUser;
-    let percobaan = 0;
-    do{
-        inputUser = prompt("Masukkan password: ");
-        percobaan++;
-        if(inputUser != passwordBenar){
-                console.log("Password salah. Coba lagi.");
-            };
-        if(percobaan === 3 && inputUser !== passwordBenar){
-                console.log("Akun diblokir!");
-                process.exit();
-            };
-        }while(inputUser !== passwordBenar);
-
-        console.log("Password benar! Akses diberikan.");
-        readline.close();
+const buatSegitiga = (tinggi) => {
+    for(let baris = 1; baris <= tinggi; baris++){
+        let tinggiSegitiga = "";
+        for(let kolom = 1; kolom <= tinggi; kolom++){
+            // console.log("*".repeat(tinggi));
+            tinggiSegitiga += "* ";
+            // console.log("*")
+            readline.close();
+        };
+        console.log(tinggiSegitiga);
+    };
 };
 
 main();
