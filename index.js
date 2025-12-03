@@ -428,31 +428,81 @@
 // main();
 
 // Soal 12
-// Pola Bintang
-const readline = require("readline").createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// // Pola Bintang
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
+// function main(){
+//     readline.question("Masukkan tinggi segitiga: ", function(tinggiSegitiga){
+//         tinggiSegitiga = parseInt(tinggiSegitiga);
+//         buatSegitiga(tinggiSegitiga);
+//         readline.close();
+//     })
+// };
+
+// const buatSegitiga = (tinggi) => {
+//     for(let baris = 1; baris <= tinggi; baris++){
+//         let tinggiSegitiga = "";
+//         for(let kolom = 1; kolom <= tinggi; kolom++){
+//             // console.log("*".repeat(tinggi));
+//             tinggiSegitiga += "* ";
+//             // console.log("*")
+//             readline.close();
+//         };
+//         console.log(tinggiSegitiga);
+//     };
+// };
+
+// main();
+
+// Soal 13
+// Rata-Rata Nilai
 function main(){
-    readline.question("Masukkan tinggi segitiga: ", function(tinggiSegitiga){
-        tinggiSegitiga = parseInt(tinggiSegitiga);
-        buatSegitiga(tinggiSegitiga);
-        readline.close();
-    })
+    let nilaiSiswa = [80, 75, 90, 85, 70];
+    let rataRataNilai = hitungRataRata(nilaiSiswa);
+    console.log("Rata-rata nilai: " + rataRataNilai);
+
+    // // Menentukan nilai tertinggi dan terendah (tanpa perulangan)
+    let nilaiTertinggi = Math.max(...nilaiSiswa);
+    let nilaiTerendah = Math.min(...nilaiSiswa);
+    console.log("Nilai tertinggi siswa adalah: " + nilaiTertinggi + " (tanpa perulangan)");
+    console.log("Nilai terendah siswa adalah: " + nilaiTerendah + " (tanpa perulangan)");
+
+    // Menentukan nilai tertinggi dan terendah (menggunakan perulangan)
+    let tertinggi = nilaiTertinggidanTerendah(nilaiSiswa);
+    let terendah = nilaiTertinggidanTerendah(nilaiSiswa);
+    console.log("Nilai tertinggi siswa adalah: " + tertinggi.max);
+    console.log("Nilai terendah siswa adalah: " + terendah.min);
 };
 
-const buatSegitiga = (tinggi) => {
-    for(let baris = 1; baris <= tinggi; baris++){
-        let tinggiSegitiga = "";
-        for(let kolom = 1; kolom <= tinggi; kolom++){
-            // console.log("*".repeat(tinggi));
-            tinggiSegitiga += "* ";
-            // console.log("*")
-            readline.close();
-        };
-        console.log(tinggiSegitiga);
+const hitungRataRata = (arrayNilai) => {
+    let total = 0;
+    let jumlahData = arrayNilai.length;
+
+    for(let i = 0; i < jumlahData; i++){
+        total = total + arrayNilai[i];
     };
+
+    let rataRata = total / jumlahData;
+    return rataRata;
+}
+
+
+const nilaiTertinggidanTerendah = (nilaiSiswa) => {
+    let nilaiMax = nilaiSiswa[0];
+    let nilaiMin= nilaiSiswa[0];
+
+    for(let i = 1; i < nilaiSiswa.length; i++){
+        if(nilaiSiswa[i] > nilaiMax){
+            nilaiMax = nilaiSiswa[i];
+        };
+        if(nilaiSiswa[i] < nilaiMin){
+            nilaiMin = nilaiSiswa[i];
+        };
+    };
+    return {max: nilaiMax, min:nilaiMin};
 };
 
 main();
