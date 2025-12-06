@@ -522,15 +522,16 @@ function main(){
     let a = prompt("Masukkan Angka Pertama: ");
     let b = prompt("Masukkan Angka Kedua: ");
     let c = prompt("Masukkan Angka Ketiga: ");
+    let d = prompt("Masukkan Angka Keempat: ");
 
-    let nilaiMaks = cariMaks(a, b, c);
+    let nilaiMaks = cariMaks(a, b, c, d);
     console.log("Nilai maksimum: " + nilaiMaks);
 
-    let nilaiMin = cariMin(a, b, c);
+    let nilaiMin = cariMin(a, b, c, d);
     console.log("Nilai minimum: " + nilaiMin);
 };
 
-const cariMaks = (a, b, c) => {
+const cariMaks = (a, b, c, d) => {
     let maksimum = a;
 
     if(b > maksimum){
@@ -541,10 +542,14 @@ const cariMaks = (a, b, c) => {
         maksimum = c;
     };
 
+    if(d > maksimum){
+        maksimum = d;
+    };
+
     return maksimum;
 };
 
-const cariMin = (a, b, c) => {
+const cariMin = (a, b, c, d) => {
     let minimum = a;
 
     if(b < minimum){
@@ -553,6 +558,10 @@ const cariMin = (a, b, c) => {
 
     if(c < minimum){
         minimum = c;
+    };
+
+    if(d < minimum){
+        minimum = d;
     };
 
     return minimum;
