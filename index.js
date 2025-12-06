@@ -458,51 +458,104 @@
 // main();
 
 // Soal 13
-// Rata-Rata Nilai
+// // Rata-Rata Nilai
+// function main(){
+//     let nilaiSiswa = [80, 75, 90, 85, 70];
+//     let rataRataNilai = hitungRataRata(nilaiSiswa);
+//     console.log("Rata-rata nilai: " + rataRataNilai);
+
+//     // // Menentukan nilai tertinggi dan terendah (tanpa perulangan)
+//     let nilaiTertinggi = Math.max(...nilaiSiswa);
+//     let nilaiTerendah = Math.min(...nilaiSiswa);
+//     console.log("Nilai tertinggi siswa adalah: " + nilaiTertinggi + " (tanpa perulangan)");
+//     console.log("Nilai terendah siswa adalah: " + nilaiTerendah + " (tanpa perulangan)");
+
+//     // Menentukan nilai tertinggi dan terendah (menggunakan perulangan)
+//     let tertinggi = nilaiTertinggidanTerendah(nilaiSiswa);
+//     let terendah = nilaiTertinggidanTerendah(nilaiSiswa);
+//     console.log("Nilai tertinggi siswa adalah: " + tertinggi.max);
+//     console.log("Nilai terendah siswa adalah: " + terendah.min);
+// };
+
+// const hitungRataRata = (arrayNilai) => {
+//     let total = 0;
+//     let jumlahData = arrayNilai.length;
+
+//     for(let i = 0; i < jumlahData; i++){
+//         total = total + arrayNilai[i];
+//     };
+
+//     let rataRata = total / jumlahData;
+//     return rataRata;
+// }
+
+
+// const nilaiTertinggidanTerendah = (nilaiSiswa) => {
+//     let nilaiMax = nilaiSiswa[0];
+//     let nilaiMin= nilaiSiswa[0];
+
+//     for(let i = 1; i < nilaiSiswa.length; i++){
+//         if(nilaiSiswa[i] > nilaiMax){
+//             nilaiMax = nilaiSiswa[i];
+//         };
+//         if(nilaiSiswa[i] < nilaiMin){
+//             nilaiMin = nilaiSiswa[i];
+//         };
+//     };
+//     return {max: nilaiMax, min:nilaiMin};
+// };
+
+// main();
+
+// Bagian 4
+// Soal 14
+// Mencari Nilai Maksimum
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+const prompt = require("prompt-sync")({
+    sigint: true
+})
+
 function main(){
-    let nilaiSiswa = [80, 75, 90, 85, 70];
-    let rataRataNilai = hitungRataRata(nilaiSiswa);
-    console.log("Rata-rata nilai: " + rataRataNilai);
+    let a = prompt("Masukkan Angka Pertama: ");
+    let b = prompt("Masukkan Angka Kedua: ");
+    let c = prompt("Masukkan Angka Ketiga: ");
 
-    // // Menentukan nilai tertinggi dan terendah (tanpa perulangan)
-    let nilaiTertinggi = Math.max(...nilaiSiswa);
-    let nilaiTerendah = Math.min(...nilaiSiswa);
-    console.log("Nilai tertinggi siswa adalah: " + nilaiTertinggi + " (tanpa perulangan)");
-    console.log("Nilai terendah siswa adalah: " + nilaiTerendah + " (tanpa perulangan)");
+    let nilaiMaks = cariMaks(a, b, c);
+    console.log("Nilai maksimum: " + nilaiMaks);
 
-    // Menentukan nilai tertinggi dan terendah (menggunakan perulangan)
-    let tertinggi = nilaiTertinggidanTerendah(nilaiSiswa);
-    let terendah = nilaiTertinggidanTerendah(nilaiSiswa);
-    console.log("Nilai tertinggi siswa adalah: " + tertinggi.max);
-    console.log("Nilai terendah siswa adalah: " + terendah.min);
+    let nilaiMin = cariMin(a, b, c);
+    console.log("Nilai minimum: " + nilaiMin);
 };
 
-const hitungRataRata = (arrayNilai) => {
-    let total = 0;
-    let jumlahData = arrayNilai.length;
+const cariMaks = (a, b, c) => {
+    let maksimum = a;
 
-    for(let i = 0; i < jumlahData; i++){
-        total = total + arrayNilai[i];
+    if(b > maksimum){
+        maksimum = b;
     };
 
-    let rataRata = total / jumlahData;
-    return rataRata;
+    if(c > maksimum){
+        maksimum = c;
+    };
+
+    return maksimum;
+};
+
+const cariMin = (a, b, c) => {
+    let minimum = a;
+
+    if(b < minimum){
+        minimum = b;
+    };
+
+    if(c < minimum){
+        minimum = c;
+    };
+
+    return minimum;
 }
-
-
-const nilaiTertinggidanTerendah = (nilaiSiswa) => {
-    let nilaiMax = nilaiSiswa[0];
-    let nilaiMin= nilaiSiswa[0];
-
-    for(let i = 1; i < nilaiSiswa.length; i++){
-        if(nilaiSiswa[i] > nilaiMax){
-            nilaiMax = nilaiSiswa[i];
-        };
-        if(nilaiSiswa[i] < nilaiMin){
-            nilaiMin = nilaiSiswa[i];
-        };
-    };
-    return {max: nilaiMax, min:nilaiMin};
-};
 
 main();
