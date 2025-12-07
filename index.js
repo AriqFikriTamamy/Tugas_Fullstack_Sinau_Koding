@@ -603,42 +603,127 @@
 // main();
 
 // Soal 16
-// Promgram Cek Rentang
+// // Promgram Cek Rentang
 
-const prompt = require("prompt-sync")({
-    sigint: true
-});
+// const prompt = require("prompt-sync")({
+//     sigint: true
+// });
 
-function main(){
-        // let nilaiUjian = prompt("Masukkan nilai ujian: ");
-        // let batasBawah = 60;
-        // let batasAtas = 100;
+// function main(){
+//         // let nilaiUjian = prompt("Masukkan nilai ujian: ");
+//         // let batasBawah = 60;
+//         // let batasAtas = 100;
 
-        // if(dalamRentang(nilaiUjian, batasBawah, batasAtas)){
-        //     console.log("Nilai dalam rentang yang valid");
-        // }else{
-        //     console.log("Nilai diluar rentang");
-        // };
+//         // if(dalamRentang(nilaiUjian, batasBawah, batasAtas)){
+//         //     console.log("Nilai dalam rentang yang valid");
+//         // }else{
+//         //     console.log("Nilai diluar rentang");
+//         // };
 
-        tahunKabisat();
-};
+//         tahunKabisat();
+// };
 
-// const dalamRentang = (nilaiUjian, batasBawah, batasAtas) => {
-//     if(nilaiUjian >= batasBawah && nilaiUjian <= batasAtas){
-//         return true;
+// // const dalamRentang = (nilaiUjian, batasBawah, batasAtas) => {
+// //     if(nilaiUjian >= batasBawah && nilaiUjian <= batasAtas){
+// //         return true;
+// //     }else{
+// //         return false;
+// //     };
+// // };
+
+// const tahunKabisat = () => {
+//     let inputTahun = prompt("Masukkan tahun: ");
+
+//     if((inputTahun % 4 == 0 && inputTahun / 100 !== 0) || (inputTahun / 400 == 0)){
+//         console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut merupakan tahun kabisat.");
 //     }else{
-//         return false;
+//         console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut bukan merupakan tahun kabisat.");
 //     };
 // };
 
-const tahunKabisat = () => {
-    let inputTahun = prompt("Masukkan tahun: ");
+// main();
 
-    if((inputTahun % 4 == 0 && inputTahun / 100 !== 0) || (inputTahun / 400 == 0)){
-        console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut merupakan tahun kabisat.");
-    }else{
-        console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut bukan merupakan tahun kabisat.");
+// Bagian 5
+// Program Sistem Kasir
+const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function main(){
+    // let namaBarang = ["Buku", "Pensil", "Tas", "Sepatu"];
+    // let hargaBarang = [50000, 5000, 150000, 250000];
+
+    // tampilkanStruk(namaBarang, hargaBarang);
+    namaDanHargaBarang();
+}
+
+const namaDanHargaBarang = () => {
+    readline.question("Masukkan jumlah barang: ", function(jumlah){
+        let totalBarang = parseInt(jumlah);
+
+        let namaBarang = [];
+        let hargaBarang = [];
+        let index = 0;
+    
+        const inputBarang = () => {
+            if(index < totalBarang && !isNaN(totalBarang)){
+                readline.question(`Masukkan nama barang ke-${index+1}: `, function(nama){
+                    if(isNaN(nama)){
+                        readline.question(`Masukkan harga untuk ${nama}: `, function(harga){
+                            if(!isNaN(harga) && parseFloat(harga) > 0){
+                                    namaBarang.push(nama);
+                                    hargaBarang.push(parseFloat(harga));
+                                    index++;
+                                    inputBarang();
+                                }else{
+                                    console.log("Harga barang tidak diketahui. Silahkan masukkan kembali harga barang dengan benar.");
+                                    readline.close();
+                                };
+                        });
+                    }else{
+                        console.log("Nama barang tidak diketahui. Silahkan masukkan kembali nama barang dengan benar.");
+                        readline.close();
+                    };
+
+                });
+            }else{
+                tampilkanStruk(namaBarang, hargaBarang);
+                readline.close();
+            };
+        };
+        inputBarang();
+    });
+};
+
+const hitungDiskon = (totalBelanja) => {
+    if(totalBelanja >= 500000){
+        return totalBelanja * 0.15;
+    }else if(totalBelanja >= 300000){
+        return totalBelanja * 0.10;
+    }else if(totalBelanja >= 100000){
+        return totalBelanja * 0.5;
+    }else {
+        return 0;
     };
+};
+
+const tampilkanStruk = (item, harga) => {
+    let total = 0;
+    console.log("===== STRUK BELANJA =====");
+
+    for(let i = 0; i < item.length; i++){
+        console.log(item[i] + ": Rp " + harga[i]);
+        total = total + harga[i];
+    };
+
+    let diskon = hitungDiskon(total);
+    let totalBayar = total - diskon;
+    console.log("------------------------");
+    console.log("Subtotal: Rp " + total);
+    console.log("Diskon: Rp " + diskon);
+    console.log("Total Bayar: Rp " + totalBayar);
+    console.log("========================");
 };
 
 main();
