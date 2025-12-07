@@ -509,62 +509,95 @@
 
 // Bagian 4
 // Soal 14
-// Mencari Nilai Maksimum
-// const readline = require("readline").createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
-const prompt = require("prompt-sync")({
-    sigint: true
-})
+// // Mencari Nilai Maksimum
+// // const readline = require("readline").createInterface({
+// //     input: process.stdin,
+// //     output: process.stdout
+// // });
+// const prompt = require("prompt-sync")({
+//     sigint: true
+// })
 
+// function main(){
+//     let a = prompt("Masukkan Angka Pertama: ");
+//     let b = prompt("Masukkan Angka Kedua: ");
+//     let c = prompt("Masukkan Angka Ketiga: ");
+//     let d = prompt("Masukkan Angka Keempat: ");
+
+//     let nilaiMaks = cariMaks(a, b, c, d);
+//     console.log("Nilai maksimum: " + nilaiMaks);
+
+//     let nilaiMin = cariMin(a, b, c, d);
+//     console.log("Nilai minimum: " + nilaiMin);
+// };
+
+// const cariMaks = (a, b, c, d) => {
+//     let maksimum = a;
+
+//     if(b > maksimum){
+//         maksimum = b;
+//     };
+
+//     if(c > maksimum){
+//         maksimum = c;
+//     };
+
+//     if(d > maksimum){
+//         maksimum = d;
+//     };
+
+//     return maksimum;
+// };
+
+// const cariMin = (a, b, c, d) => {
+//     let minimum = a;
+
+//     if(b < minimum){
+//         minimum = b;
+//     };
+
+//     if(c < minimum){
+//         minimum = c;
+//     };
+
+//     if(d < minimum){
+//         minimum = d;
+//     };
+
+//     return minimum;
+// }
+
+// main();
+
+// Soal 15
+// Program Perbandingan Equality
 function main(){
-    let a = prompt("Masukkan Angka Pertama: ");
-    let b = prompt("Masukkan Angka Kedua: ");
-    let c = prompt("Masukkan Angka Ketiga: ");
-    let d = prompt("Masukkan Angka Keempat: ");
+    // let x = 5;
+    // let y = "5";
 
-    let nilaiMaks = cariMaks(a, b, c, d);
-    console.log("Nilai maksimum: " + nilaiMaks);
+    // let x = null;
+    // let y = undefined;
 
-    let nilaiMin = cariMin(a, b, c, d);
-    console.log("Nilai minimum: " + nilaiMin);
+    let x = "10";
+    let y = 10;
+    bandingkan(x, y);
 };
 
-const cariMaks = (a, b, c, d) => {
-    let maksimum = a;
+const bandingkan = (x, y) => {
+    console.log("Nilai 1: " + x + " (tipe: " + typeof(x) + ")");
+    console.log("Nilai 2: " + y + " (tipe: " + typeof(y) + ")");
 
-    if(b > maksimum){
-        maksimum = b;
+    if(x == y){
+        console.log("Loose equality (==): TRUE");
+    }else{
+        console.log("Loose Equality (==): FALSE");
     };
 
-    if(c > maksimum){
-        maksimum = c;
+    if(x === y){
+        console.log("Strict equality (===): TRUE");
+    }else{
+        console.log('Strict equality (===): FALSE');
     };
-
-    if(d > maksimum){
-        maksimum = d;
-    };
-
-    return maksimum;
 };
-
-const cariMin = (a, b, c, d) => {
-    let minimum = a;
-
-    if(b < minimum){
-        minimum = b;
-    };
-
-    if(c < minimum){
-        minimum = c;
-    };
-
-    if(d < minimum){
-        minimum = d;
-    };
-
-    return minimum;
-}
 
 main();
