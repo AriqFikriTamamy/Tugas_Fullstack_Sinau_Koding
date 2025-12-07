@@ -570,33 +570,74 @@
 // main();
 
 // Soal 15
-// Program Perbandingan Equality
+// // Program Perbandingan Equality
+// function main(){
+//     // let x = 5;
+//     // let y = "5";
+
+//     // let x = null;
+//     // let y = undefined;
+
+//     let x = "10";
+//     let y = 10;
+//     bandingkan(x, y);
+// };
+
+// const bandingkan = (x, y) => {
+//     console.log("Nilai 1: " + x + " (tipe: " + typeof(x) + ")");
+//     console.log("Nilai 2: " + y + " (tipe: " + typeof(y) + ")");
+
+//     if(x == y){
+//         console.log("Loose equality (==): TRUE");
+//     }else{
+//         console.log("Loose Equality (==): FALSE");
+//     };
+
+//     if(x === y){
+//         console.log("Strict equality (===): TRUE");
+//     }else{
+//         console.log('Strict equality (===): FALSE');
+//     };
+// };
+
+// main();
+
+// Soal 16
+// Promgram Cek Rentang
+
+const prompt = require("prompt-sync")({
+    sigint: true
+});
+
 function main(){
-    // let x = 5;
-    // let y = "5";
+        // let nilaiUjian = prompt("Masukkan nilai ujian: ");
+        // let batasBawah = 60;
+        // let batasAtas = 100;
 
-    // let x = null;
-    // let y = undefined;
+        // if(dalamRentang(nilaiUjian, batasBawah, batasAtas)){
+        //     console.log("Nilai dalam rentang yang valid");
+        // }else{
+        //     console.log("Nilai diluar rentang");
+        // };
 
-    let x = "10";
-    let y = 10;
-    bandingkan(x, y);
+        tahunKabisat();
 };
 
-const bandingkan = (x, y) => {
-    console.log("Nilai 1: " + x + " (tipe: " + typeof(x) + ")");
-    console.log("Nilai 2: " + y + " (tipe: " + typeof(y) + ")");
+// const dalamRentang = (nilaiUjian, batasBawah, batasAtas) => {
+//     if(nilaiUjian >= batasBawah && nilaiUjian <= batasAtas){
+//         return true;
+//     }else{
+//         return false;
+//     };
+// };
 
-    if(x == y){
-        console.log("Loose equality (==): TRUE");
-    }else{
-        console.log("Loose Equality (==): FALSE");
-    };
+const tahunKabisat = () => {
+    let inputTahun = prompt("Masukkan tahun: ");
 
-    if(x === y){
-        console.log("Strict equality (===): TRUE");
+    if((inputTahun % 4 == 0 && inputTahun / 100 !== 0) || (inputTahun / 400 == 0)){
+        console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut merupakan tahun kabisat.");
     }else{
-        console.log('Strict equality (===): FALSE');
+        console.log("Tahun yang Anda masukkan adalah tahun " + inputTahun + "." + "\n" + "Tahun tersebut bukan merupakan tahun kabisat.");
     };
 };
 
