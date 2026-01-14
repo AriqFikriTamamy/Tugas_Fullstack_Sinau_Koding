@@ -821,100 +821,187 @@
 
 // main();
 
-// Soal 19
-// Validasi Form Registrasi
-// const readline = require("readline").createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
+// // Soal 19
+// // Validasi Form Registrasi
+// // const readline = require("readline").createInterface({
+// //     input: process.stdin,
+// //     output: process.stdout
+// // });
 
+// const prompt = require("prompt-sync")({
+//     sigint:  true
+// })
+
+// function main(){
+//     prosesRegistrasi();
+// };
+
+// const validasiUsername = (username) => {
+//     let panjang = username.length;
+//     if(panjang >= 5 && panjang <= 15){
+//         return true;
+//     }else{
+//         return false;
+//     };
+// };
+
+// const validasiPassword = (password) => {
+//     let panjang = password.length;
+//     if (panjang >= 8){
+//         return true;
+//     }else{
+//         return false;
+//     };
+// };
+
+// const validasiUsia = (usia) => {
+//     return usia >= 17 && usia <= 100;
+// };
+
+// const validasiEmail = (email) => {
+//     return email.includes("@") && email.includes("."); // method includes() digunakan untuk emngecek apakah terdapat karakter yang diminta dari inputan tersebut
+// };
+
+// const validasiKonfirmasiPassword = (konfirmasiPassword, password) => {
+//     return konfirmasiPassword === password;
+// };
+
+// const prosesRegistrasi = () => {
+//     let isValid = false;
+//     let percobaan = 0;
+//     let maxPercobaan = 3;
+
+//     while(!isValid && percobaan < maxPercobaan){
+//         let username = prompt("Masukkan username (5-15 karakter): ");
+//         let password = prompt("Masukkan password (min 8 karakter): ");
+//         let konfirmasiPassword = prompt("Masukkan ulang password: ");
+//         let usia = prompt("Masukkan usia: ");
+//         let email = prompt("Masukkan email: ");
+
+//         let userValid = validasiUsername(username);
+//         let passValid = validasiPassword(password);
+//         let usiaValid = validasiUsia(usia);
+//         let emailValid = validasiEmail(email);
+//         let confirmPassValid = validasiKonfirmasiPassword(konfirmasiPassword, password);
+
+//         if(userValid && passValid && usiaValid && emailValid && confirmPassValid){
+//             console.log("Registrasi berhasil!");
+//             return isValid = true;
+//         }else{
+//             percobaan = percobaan + 1;
+//             console.log("Data tidak valid! Percobaan ke-" + percobaan);
+
+//             if(!userValid){
+//                 console.log("- Username harus 5 - 15 karakter");
+//             };
+
+//             if(!passValid){
+//                 console.log("- Password minimal 8 karakter");
+//             };
+
+//             if(!usiaValid){
+//                 console.log("- Usia harus 17-100 tahun");
+//             };
+
+//             if(!emailValid){
+//                 console.log("- Email harus terdapat karakter '@' dan '.'");
+//             };
+
+//             if(!confirmPassValid){
+//                 console.log("- Password harus sama")
+//             }
+//         };
+//     };
+
+//     if(!isValid){
+//         console.log("Registrasi gagal setelah " + maxPercobaan + " percobaan");
+//     };
+// };
+
+// main();
+
+// Soal 20
+// Program Tebak Angka
 const prompt = require("prompt-sync")({
-    sigint:  true
-})
+    sigint: true
+});
+
+let totalSkor = 0;
 
 function main(){
-    prosesRegistrasi();
+    mainkanGame();
 };
 
-const validasiUsername = (username) => {
-    let panjang = username.length;
-    if(panjang >= 5 && panjang <= 15){
-        return true;
-    }else{
-        return false;
-    };
-};
+const generateRandom = (min, max) => {
+    return Math.floor(Math.random() * max) + min; 
+    //method Math.floor() digunakan untuk pembulatan angka ke bawah sedangkan method Math.random() digunakan untuk mengenerate angka acak
+}
 
-const validasiPassword = (password) => {
-    let panjang = password.length;
-    if (panjang >= 8){
-        return true;
-    }else{
-        return false;
-    };
-};
+const mainkanGame = () => {
+    let angkaRahasia = generateRandom(1, 100);
+    let tebakan = 0;
+    let jumlahTebakan = 0;
+    let maxTebakan = 7;
+    let menang = false;
+    let skor = 0;
 
-const validasiUsia = (usia) => {
-    return usia >= 17 && usia <= 100;
-};
+    console.log("=== GAME TEBAK ANGKA ===");
+    console.log("Tebak angka antara 1-100");
+    console.log("Anda punya " + maxTebakan + " kesempatam");
 
-const validasiEmail = (email) => {
-    return email.includes("@") && email.includes("."); // method includes() digunakan untuk emngecek apakah terdapat karakter yang diminta dari inputan tersebut
-};
+    while(jumlahTebakan < maxTebakan && !menang){
+        tebakan = parseInt(prompt("Masukkan tebakan Anda: "));
+        jumlahTebakan = jumlahTebakan + 1;
 
-const validasiKonfirmasiPassword = (konfirmasiPassword, password) => {
-    return konfirmasiPassword === password;
-};
+        if(tebakan == angkaRahasia){
+            let sisaKesempatan = maxTebakan - jumlahTebakan + 1;
+            skor = Math.floor((sisaKesempatan / maxTebakan) * 100); //Math.floor digunakan untuk pembulatan
+            totalSkor = totalSkor + skor;
 
-const prosesRegistrasi = () => {
-    let isValid = false;
-    let percobaan = 0;
-    let maxPercobaan = 3;
-
-    while(!isValid && percobaan < maxPercobaan){
-        let username = prompt("Masukkan username (5-15 karakter): ");
-        let password = prompt("Masukkan password (min 8 karakter): ");
-        let konfirmasiPassword = prompt("Masukkan ulang password: ");
-        let usia = prompt("Masukkan usia: ");
-        let email = prompt("Masukkan email: ");
-
-        let userValid = validasiUsername(username);
-        let passValid = validasiPassword(password);
-        let usiaValid = validasiUsia(usia);
-        let emailValid = validasiEmail(email);
-        let confirmPassValid = validasiKonfirmasiPassword(konfirmasiPassword, password);
-
-        if(userValid && passValid && usiaValid && emailValid && confirmPassValid){
-            console.log("Registrasi berhasil!");
-            return isValid = true;
-        }else{
-            percobaan = percobaan + 1;
-            console.log("Data tidak valid! Percobaan ke-" + percobaan);
-
-            if(!userValid){
-                console.log("- Username harus 5 - 15 karakter");
-            };
-
-            if(!passValid){
-                console.log("- Password minimal 8 karakter");
-            };
-
-            if(!usiaValid){
-                console.log("- Usia harus 17-100 tahun");
-            };
-
-            if(!emailValid){
-                console.log("- Email harus terdapat karakter '@' dan '.'");
-            };
-
-            if(!confirmPassValid){
-                console.log("- Password harus sama")
-            }
+            console.log("SELAMAT! Anda benar!");
+            console.log("Tebakan ke-" + jumlahTebakan);
+            console.log("Skor ronde ini: " + skor);
+            console.log("Total skor: " + totalSkor);
+            menang = true
+        }else if(tebakan < angkaRahasia){
+            console.log("Terlalu kecil! Coba lagi");
+            console.log("Sisa kesempatan: " + (maxTebakan - jumlahTebakan));
+        }else if(tebakan > angkaRahasia){
+            console.log("Terlalu besar! Coba lagi");
+            console.log("Sisa kesempatan: " + (maxTebakan - jumlahTebakan));
         };
     };
 
-    if(!isValid){
-        console.log("Registrasi gagal setelah " + maxPercobaan + " percobaan");
+    if(!menang){
+        console.log("GAME OVER! Angka rahasia adalah: " + angkaRahasia);
+        console.log("Skor ronde ini: 0");
+        console.log("Total skor: " + totalSkor);
+    }
+
+    // let mainLagi = prompt("Main lagi? (ya/tidak): ");
+    // if(mainLagi == "ya" || mainLagi == "YA" || mainLagi == "Ya" || mainLagi == "yA" || mainLagi == "Y" || mainLagi == "y"){ //validasi ditambahkan untuk antisipasi user salah ketik
+    //     mainkanGame();
+    // }else{
+    //     console.log("Terima kasih sudah bermain!");
+    // };
+
+    mainLagi();
+};
+
+const mainLagi = () => {
+    let mainLagi = prompt("Main lagi? (ya/tidak): ");
+    // if(mainLagi == "ya" || mainLagi == "YA" || mainLagi == "Ya" || mainLagi == "yA" || mainLagi == "Y" || mainLagi == "y"){ //validasi ditambahkan untuk antisipasi user salah ketik
+    //     mainkanGame();
+    // }else{
+    //     console.log("Terima kasih sudah bermain!");
+    // };
+
+    // cara validasi lebih efisien dengan logika yang sama dapat menggunakan method toLowerCase()
+    if(mainLagi.toLowerCase() === "ya" || mainLagi.toLowerCase() === "y"){
+        mainkanGame();
+    }else{
+        console.log("Total skor Anda: " + totalSkor);
+        console.log("Terima kasih sudah bermain!");
     };
 };
 
