@@ -731,92 +731,191 @@
 
 // Soal 18
 // Program Pengelolaan Nilai Mahasiswa
+// function main(){
+//     let nilaiMahasiswa = [75, 85, 60, 90, 70, 88, 95, 65];
+//     hitungStatistik(nilaiMahasiswa);
+// }
+
+// const filterNilai = (nilaiMahasiswa, hitungStatistik) => {
+//     let hasil = [];
+//         nilaiMahasiswa.forEach((nilai) => {
+//         if(hitungStatistik(nilai)){
+//             hasil.push(nilai)
+//         };
+//     });
+//     return hasil;
+// }
+
+// const nilaiTinggi = (nilai) => {
+//     return nilai >= 80;
+// };
+
+// const hitungStatistik = (nilaiMahasiswa) => {
+//     let jumlah = nilaiMahasiswa.length;
+//     let total = 0;
+
+//     nilaiMahasiswa.forEach((nilai) => {
+//         total = total + nilai;
+//     })
+
+//     let rataRata = total / jumlah;
+
+//     console.log("Jumlah Mahasiswa: " + jumlah);
+//     console.log("Rata-rata nilai: " + rataRata);
+
+//     let nilaiTinggiArray = filterNilai(nilaiMahasiswa, nilaiTinggi);
+//     console.log("Jumlah yang mendapat nilai >= 80: " + nilaiTinggiArray.length);
+
+//     let nilaiMedian = hitungMedian(nilaiMahasiswa);
+//     console.log("Median dari nilai tersebut adalah: " + nilaiMedian);
+
+//     let nilaiModus = hitungModus(nilaiMahasiswa);
+//     console.log("Modus dari data tersebut adalah: " + nilaiModus);
+// };
+
+// const hitungMedian = (nilaiMahasiswa) => {
+//     if(!nilaiMahasiswa || nilaiMahasiswa.length === 0){
+//         return undefined;
+//     };
+
+//     const nilaiTerurut = [...nilaiMahasiswa].sort((a, b) => a - b);
+
+//     const nilaiTerurutLength = nilaiTerurut.length;
+//     const median = Math.floor(nilaiTerurutLength / 2);
+
+//     if(nilaiTerurutLength % 2 !== 0 ){
+//         return nilaiTerurut[median]; //kondisi untuk elemen data yang berjumlah ganjil
+//     }else {
+//         return (nilaiTerurut[median - 1] + nilaiTerurut[median]) / 2 //kondisi untuk  elemen data yang berjumlah genap
+//     };
+// };
+
+// const hitungModus = (nilaiMahasiswa) => {
+//     // cari nilai yang sering muncul dari data nilai menggunakan peta frekuensi di Javascript
+//     const petaFrekuensiNilai =  {};
+//     nilaiMahasiswa.forEach(nilai => {
+//         petaFrekuensiNilai[nilai] = (petaFrekuensiNilai[nilai] || 0) + 1;
+//     });
+
+//     let modus = [];
+//     let frekuensiMaksimum = 0;
+
+//     // Lakukan perulangan dari peta frekuensi untuk mencari frekuensi tertinggi dari nilai
+//     for(const nilai in petaFrekuensiNilai){
+//         const frekuensi = petaFrekuensiNilai[nilai];
+
+//         if(frekuensi > frekuensiMaksimum){
+//             frekuensiMaksimum = frekuensi;
+//             modus = [parseInt(nilai)];
+//         }else if(frekuensi === frekuensiMaksimum){
+//             modus.push(parseInt(nilai));
+//         };
+//     };
+
+//     if(modus.length === Object.keys(petaFrekuensiNilai).length && modus.length > 1){
+//         return "Tidak terdapat nilai modus pada data tersebut";
+//     }
+
+//     return modus;
+// };
+
+// main();
+
+// Soal 19
+// Validasi Form Registrasi
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+const prompt = require("prompt-sync")({
+    sigint:  true
+})
+
 function main(){
-    let nilaiMahasiswa = [75, 85, 60, 90, 70, 88, 95, 65];
-    hitungStatistik(nilaiMahasiswa);
-}
+    prosesRegistrasi();
+};
 
-const filterNilai = (nilaiMahasiswa, hitungStatistik) => {
-    let hasil = [];
-        nilaiMahasiswa.forEach((nilai) => {
-        if(hitungStatistik(nilai)){
-            hasil.push(nilai)
+const validasiUsername = (username) => {
+    let panjang = username.length;
+    if(panjang >= 5 && panjang <= 15){
+        return true;
+    }else{
+        return false;
+    };
+};
+
+const validasiPassword = (password) => {
+    let panjang = password.length;
+    if (panjang >= 8){
+        return true;
+    }else{
+        return false;
+    };
+};
+
+const validasiUsia = (usia) => {
+    return usia >= 17 && usia <= 100;
+};
+
+const validasiEmail = (email) => {
+    return email.includes("@") && email.includes("."); // method includes() digunakan untuk emngecek apakah terdapat karakter yang diminta dari inputan tersebut
+};
+
+const validasiKonfirmasiPassword = (konfirmasiPassword, password) => {
+    return konfirmasiPassword === password;
+};
+
+const prosesRegistrasi = () => {
+    let isValid = false;
+    let percobaan = 0;
+    let maxPercobaan = 3;
+
+    while(!isValid && percobaan < maxPercobaan){
+        let username = prompt("Masukkan username (5-15 karakter): ");
+        let password = prompt("Masukkan password (min 8 karakter): ");
+        let konfirmasiPassword = prompt("Masukkan ulang password: ");
+        let usia = prompt("Masukkan usia: ");
+        let email = prompt("Masukkan email: ");
+
+        let userValid = validasiUsername(username);
+        let passValid = validasiPassword(password);
+        let usiaValid = validasiUsia(usia);
+        let emailValid = validasiEmail(email);
+        let confirmPassValid = validasiKonfirmasiPassword(konfirmasiPassword, password);
+
+        if(userValid && passValid && usiaValid && emailValid && confirmPassValid){
+            console.log("Registrasi berhasil!");
+            return isValid = true;
+        }else{
+            percobaan = percobaan + 1;
+            console.log("Data tidak valid! Percobaan ke-" + percobaan);
+
+            if(!userValid){
+                console.log("- Username harus 5 - 15 karakter");
+            };
+
+            if(!passValid){
+                console.log("- Password minimal 8 karakter");
+            };
+
+            if(!usiaValid){
+                console.log("- Usia harus 17-100 tahun");
+            };
+
+            if(!emailValid){
+                console.log("- Email harus terdapat karakter '@' dan '.'");
+            };
+
+            if(!confirmPassValid){
+                console.log("- Password harus sama")
+            }
         };
-    });
-    return hasil;
-}
-
-const nilaiTinggi = (nilai) => {
-    return nilai >= 80;
-};
-
-const hitungStatistik = (nilaiMahasiswa) => {
-    let jumlah = nilaiMahasiswa.length;
-    let total = 0;
-
-    nilaiMahasiswa.forEach((nilai) => {
-        total = total + nilai;
-    })
-
-    let rataRata = total / jumlah;
-
-    console.log("Jumlah Mahasiswa: " + jumlah);
-    console.log("Rata-rata nilai: " + rataRata);
-
-    let nilaiTinggiArray = filterNilai(nilaiMahasiswa, nilaiTinggi);
-    console.log("Jumlah yang mendapat nilai >= 80: " + nilaiTinggiArray.length);
-
-    let nilaiMedian = hitungMedian(nilaiMahasiswa);
-    console.log("Median dari nilai tersebut adalah: " + nilaiMedian);
-
-    let nilaiModus = hitungModus(nilaiMahasiswa);
-    console.log("Modus dari data tersebut adalah: " + nilaiModus);
-};
-
-const hitungMedian = (nilaiMahasiswa) => {
-    if(!nilaiMahasiswa || nilaiMahasiswa.length === 0){
-        return undefined;
     };
 
-    const nilaiTerurut = [...nilaiMahasiswa].sort((a, b) => a - b);
-
-    const nilaiTerurutLength = nilaiTerurut.length;
-    const median = Math.floor(nilaiTerurutLength / 2);
-
-    if(nilaiTerurutLength % 2 !== 0 ){
-        return nilaiTerurut[median]; //kondisi untuk elemen data yang berjumlah ganjil
-    }else {
-        return (nilaiTerurut[median - 1] + nilaiTerurut[median]) / 2 //kondisi untuk  elemen data yang berjumlah genap
+    if(!isValid){
+        console.log("Registrasi gagal setelah " + maxPercobaan + " percobaan");
     };
-};
-
-const hitungModus = (nilaiMahasiswa) => {
-    // cari nilai yang sering muncul dari data nilai menggunakan peta frekuensi di Javascript
-    const petaFrekuensiNilai =  {};
-    nilaiMahasiswa.forEach(nilai => {
-        petaFrekuensiNilai[nilai] = (petaFrekuensiNilai[nilai] || 0) + 1;
-    });
-
-    let modus = [];
-    let frekuensiMaksimum = 0;
-
-    // Lakukan perulangan dari peta frekuensi untuk mencari frekuensi tertinggi dari nilai
-    for(const nilai in petaFrekuensiNilai){
-        const frekuensi = petaFrekuensiNilai[nilai];
-
-        if(frekuensi > frekuensiMaksimum){
-            frekuensiMaksimum = frekuensi;
-            modus = [parseInt(nilai)];
-        }else if(frekuensi === frekuensiMaksimum){
-            modus.push(parseInt(nilai));
-        };
-    };
-
-    if(modus.length === Object.keys(petaFrekuensiNilai).length && modus.length > 1){
-        return "Tidak terdapat nilai modus pada data tersebut";
-    }
-
-    return modus;
 };
 
 main();
