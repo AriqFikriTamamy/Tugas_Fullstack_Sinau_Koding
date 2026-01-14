@@ -644,86 +644,179 @@
 // main();
 
 // Bagian 5
+// Soal 17
 // Program Sistem Kasir
-const readline = require("readline").createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require("readline").createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
+// function main(){
+//     // let namaBarang = ["Buku", "Pensil", "Tas", "Sepatu"];
+//     // let hargaBarang = [50000, 5000, 150000, 250000];
+
+//     // tampilkanStruk(namaBarang, hargaBarang);
+//     namaDanHargaBarang();
+// }
+
+// const namaDanHargaBarang = () => {
+//     readline.question("Masukkan jumlah barang: ", function(jumlah){
+//         let totalBarang = parseInt(jumlah);
+
+//         let namaBarang = [];
+//         let hargaBarang = [];
+//         let index = 0;
+    
+//         const inputBarang = () => {
+//             if(index < totalBarang && !isNaN(totalBarang)){
+//                 readline.question(`Masukkan nama barang ke-${index+1}: `, function(nama){
+//                     if(isNaN(nama)){
+//                         readline.question(`Masukkan harga untuk ${nama}: `, function(harga){
+//                             if(!isNaN(harga) && parseFloat(harga) > 0){
+//                                     namaBarang.push(nama);
+//                                     hargaBarang.push(parseFloat(harga));
+//                                     index++;
+//                                     inputBarang();
+//                                 }else{
+//                                     console.log("Harga barang tidak diketahui. Silahkan masukkan kembali harga barang dengan benar.");
+//                                     readline.close();
+//                                 };
+//                         });
+//                     }else{
+//                         console.log("Nama barang tidak diketahui. Silahkan masukkan kembali nama barang dengan benar.");
+//                         readline.close();
+//                     };
+
+//                 });
+//             }else{
+//                 tampilkanStruk(namaBarang, hargaBarang);
+//                 readline.close();
+//             };
+//         };
+//         inputBarang();
+//     });
+// };
+
+// const hitungDiskon = (totalBelanja) => {
+//     if(totalBelanja >= 500000){
+//         return totalBelanja * 0.15;
+//     }else if(totalBelanja >= 300000){
+//         return totalBelanja * 0.10;
+//     }else if(totalBelanja >= 100000){
+//         return totalBelanja * 0.5;
+//     }else {
+//         return 0;
+//     };
+// };
+
+// const tampilkanStruk = (item, harga) => {
+//     let total = 0;
+//     console.log("===== STRUK BELANJA =====");
+
+//     for(let i = 0; i < item.length; i++){
+//         console.log(item[i] + ": Rp " + harga[i]);
+//         total = total + harga[i];
+//     };
+
+//     let diskon = hitungDiskon(total);
+//     let totalBayar = total - diskon;
+//     console.log("------------------------");
+//     console.log("Subtotal: Rp " + total);
+//     console.log("Diskon: Rp " + diskon);
+//     console.log("Total Bayar: Rp " + totalBayar);
+//     console.log("========================");
+// };
+
+// main();
+
+// Soal 18
+// Program Pengelolaan Nilai Mahasiswa
 function main(){
-    // let namaBarang = ["Buku", "Pensil", "Tas", "Sepatu"];
-    // let hargaBarang = [50000, 5000, 150000, 250000];
-
-    // tampilkanStruk(namaBarang, hargaBarang);
-    namaDanHargaBarang();
+    let nilaiMahasiswa = [75, 85, 60, 90, 70, 88, 95, 65];
+    hitungStatistik(nilaiMahasiswa);
 }
 
-const namaDanHargaBarang = () => {
-    readline.question("Masukkan jumlah barang: ", function(jumlah){
-        let totalBarang = parseInt(jumlah);
-
-        let namaBarang = [];
-        let hargaBarang = [];
-        let index = 0;
-    
-        const inputBarang = () => {
-            if(index < totalBarang && !isNaN(totalBarang)){
-                readline.question(`Masukkan nama barang ke-${index+1}: `, function(nama){
-                    if(isNaN(nama)){
-                        readline.question(`Masukkan harga untuk ${nama}: `, function(harga){
-                            if(!isNaN(harga) && parseFloat(harga) > 0){
-                                    namaBarang.push(nama);
-                                    hargaBarang.push(parseFloat(harga));
-                                    index++;
-                                    inputBarang();
-                                }else{
-                                    console.log("Harga barang tidak diketahui. Silahkan masukkan kembali harga barang dengan benar.");
-                                    readline.close();
-                                };
-                        });
-                    }else{
-                        console.log("Nama barang tidak diketahui. Silahkan masukkan kembali nama barang dengan benar.");
-                        readline.close();
-                    };
-
-                });
-            }else{
-                tampilkanStruk(namaBarang, hargaBarang);
-                readline.close();
-            };
+const filterNilai = (nilaiMahasiswa, hitungStatistik) => {
+    let hasil = [];
+        nilaiMahasiswa.forEach((nilai) => {
+        if(hitungStatistik(nilai)){
+            hasil.push(nilai)
         };
-        inputBarang();
     });
+    return hasil;
+}
+
+const nilaiTinggi = (nilai) => {
+    return nilai >= 80;
 };
 
-const hitungDiskon = (totalBelanja) => {
-    if(totalBelanja >= 500000){
-        return totalBelanja * 0.15;
-    }else if(totalBelanja >= 300000){
-        return totalBelanja * 0.10;
-    }else if(totalBelanja >= 100000){
-        return totalBelanja * 0.5;
-    }else {
-        return 0;
-    };
-};
-
-const tampilkanStruk = (item, harga) => {
+const hitungStatistik = (nilaiMahasiswa) => {
+    let jumlah = nilaiMahasiswa.length;
     let total = 0;
-    console.log("===== STRUK BELANJA =====");
 
-    for(let i = 0; i < item.length; i++){
-        console.log(item[i] + ": Rp " + harga[i]);
-        total = total + harga[i];
+    nilaiMahasiswa.forEach((nilai) => {
+        total = total + nilai;
+    })
+
+    let rataRata = total / jumlah;
+
+    console.log("Jumlah Mahasiswa: " + jumlah);
+    console.log("Rata-rata nilai: " + rataRata);
+
+    let nilaiTinggiArray = filterNilai(nilaiMahasiswa, nilaiTinggi);
+    console.log("Jumlah yang mendapat nilai >= 80: " + nilaiTinggiArray.length);
+
+    let nilaiMedian = hitungMedian(nilaiMahasiswa);
+    console.log("Median dari nilai tersebut adalah: " + nilaiMedian);
+
+    let nilaiModus = hitungModus(nilaiMahasiswa);
+    console.log("Modus dari data tersebut adalah: " + nilaiModus);
+};
+
+const hitungMedian = (nilaiMahasiswa) => {
+    if(!nilaiMahasiswa || nilaiMahasiswa.length === 0){
+        return undefined;
     };
 
-    let diskon = hitungDiskon(total);
-    let totalBayar = total - diskon;
-    console.log("------------------------");
-    console.log("Subtotal: Rp " + total);
-    console.log("Diskon: Rp " + diskon);
-    console.log("Total Bayar: Rp " + totalBayar);
-    console.log("========================");
+    const nilaiTerurut = [...nilaiMahasiswa].sort((a, b) => a - b);
+
+    const nilaiTerurutLength = nilaiTerurut.length;
+    const median = Math.floor(nilaiTerurutLength / 2);
+
+    if(nilaiTerurutLength % 2 !== 0 ){
+        return nilaiTerurut[median]; //kondisi untuk elemen data yang berjumlah ganjil
+    }else {
+        return (nilaiTerurut[median - 1] + nilaiTerurut[median]) / 2 //kondisi untuk  elemen data yang berjumlah genap
+    };
+};
+
+const hitungModus = (nilaiMahasiswa) => {
+    // cari nilai yang sering muncul dari data nilai menggunakan peta frekuensi di Javascript
+    const petaFrekuensiNilai =  {};
+    nilaiMahasiswa.forEach(nilai => {
+        petaFrekuensiNilai[nilai] = (petaFrekuensiNilai[nilai] || 0) + 1;
+    });
+
+    let modus = [];
+    let frekuensiMaksimum = 0;
+
+    // Lakukan perulangan dari peta frekuensi untuk mencari frekuensi tertinggi dari nilai
+    for(const nilai in petaFrekuensiNilai){
+        const frekuensi = petaFrekuensiNilai[nilai];
+
+        if(frekuensi > frekuensiMaksimum){
+            frekuensiMaksimum = frekuensi;
+            modus = [parseInt(nilai)];
+        }else if(frekuensi === frekuensiMaksimum){
+            modus.push(parseInt(nilai));
+        };
+    };
+
+    if(modus.length === Object.keys(petaFrekuensiNilai).length && modus.length > 1){
+        return "Tidak terdapat nilai modus pada data tersebut";
+    }
+
+    return modus;
 };
 
 main();
